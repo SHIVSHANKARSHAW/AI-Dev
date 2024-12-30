@@ -17,3 +17,6 @@ We will start with backend gradually moving towards frontend of our webApp
 2 -> Setup DataBase
 - create a new folder called ` db ` for database files
 - create a new file called ` db.js ` to handle database connection
+
+
+https://www.youtube.com/watch?v=v9MtwYmSXuw&list=PLbtI3_MArDOmebicV5NFkhBMRJH8vhBEN&index=13
