@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "../config/axios";
 
-const Login = () => {
-
+const Register = () => {
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -17,7 +17,7 @@ const Login = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     axios
-      .post("/login", { email, password })
+      .post("/register", { email, password })
       .then((res) => {
         console.log(res.data);
         navigate("/");
@@ -52,7 +52,7 @@ const Login = () => {
                 </svg>
               </div>
               <p className="m-0 text-[16px] font-semibold dark:text-white">
-                Login to your Account
+                Create Your Account
               </p>
               <span className="m-0 text-xs max-w-[90%] text-center text-[#8B8E98]">
                 Get started with our app, just start section and enjoy
@@ -72,6 +72,15 @@ const Login = () => {
           <div className="w-full flex flex-col gap-2 relative">
             <label className="font-semibold text-xs text-gray-400">
               Password
+            </label>
+            <input
+              placeholder="••••••••"
+              className="border rounded-lg px-3 py-2 mb-5 text-sm w-full outline-none dark:border-gray-500 dark:bg-gray-900"
+            />
+          </div>
+          <div className="w-full flex flex-col gap-2 relative">
+            <label className="font-semibold text-xs text-gray-400">
+              Verify Password
             </label>
             <input
               placeholder="••••••••"
@@ -130,7 +139,7 @@ const Login = () => {
           </div>
           <div className="flex items-baseline justify-between">
             <button className="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900 w-full">
-              Login
+              Signup
             </button>
           </div>
         </div>
@@ -139,4 +148,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
