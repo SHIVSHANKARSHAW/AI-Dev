@@ -4,15 +4,18 @@ import { validationResult } from "express-validator";
 import redisClient from "../services/redis.services.js";
 
 export const createUserController = async (req, res) => {
+  console.log("Request body in controller:", req.body); // Log request body
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
+  const { email, password } = req.body;
 
   try {
-    const user = await userService.createUser(req.body);
+    const user = await userService.createUser(email, password);
     const token = await user.generateJWT();
+    delete user._doc.password;
     res.status(201).json({ user, token });
   } catch (error) {
     return res.status(500).json({ error: error.message });
@@ -42,6 +45,7 @@ export const loginUserController = async (req, res) => {
     }
 
     const token = await user.generateJWT();
+    delete user._doc.password;
     res.status(200).json({ user, token });
   } catch (error) {
     return res.status(500).json({ error: error.message });
@@ -54,13 +58,12 @@ export const profileController = async (req, res) => {
   });
 };
 
-
 export const logoutController = async (req, res) => {
-try{
-  const token = req.cookies.token || req.headers.authorization.split(' ')[1];
-  redisClient.set(token, 'logout', 'EX', 60 * 60 * 24);
-  res.status(200).send({ message: 'Logout successful' });
-}catch(error){
-  return res.status(401).send({ error: 'Unauthorized User' });
-}
-}
+  try {
+    const token = req.cookies.token || req.headers.authorization.split(" ")[1];
+    redisClient.set(token, "logout", "EX", 60 * 60 * 24);
+    res.status(200).send({ message: "Logout successful" });
+  } catch (error) {
+    return res.status(401).send({ error: "Unauthorized User" });
+  }
+};

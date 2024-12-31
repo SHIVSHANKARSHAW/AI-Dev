@@ -15,16 +15,16 @@ router.post(
 );
 
 router.post(
-    "/login",
-    body("email").isEmail().withMessage("Please enter a valid email"),
-    body("password")
-      .isLength({ min: 3 })
-      .withMessage("Password must be at least 3 characters long"),
-    userController.loginUserController
-  );
+  "/login",
+  body("email").isEmail().withMessage("Please enter a valid email"),
+  body("password")
+    .isLength({ min: 3 })
+    .withMessage("Password must be at least 3 characters long"),
+  userController.loginUserController
+);
 
-  router.get('/profile', authMiddleware.authUser, userController.profileController);
+router.get('/profile', authMiddleware.authUser, userController.profileController);
 
-  router.get('/logout',authMiddleware.authUser, userController.logoutController);
+router.get('/logout', authMiddleware.authUser, userController.logoutController);
 
 export default router;
