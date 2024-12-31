@@ -1,22 +1,2 @@
-AI Software Engineer [ MERN Stack Project ]
-
-We will start with backend gradually moving towards frontend of our webApp
-
-1 -> Setup backend 
-- mkdir backend
-- cd backend
-- npm init -y
-- npm install express mongoose body-parser cors jsonwebtoken bcrypt cookie-parser dotenv 
-- add ` type : module ` to package.json
-- create server.js to create an entrypoint 
-- create .env file to store environment variable
-- we have created both app.js and server.js to handle and integrate socket.io easily
-- we use ` npx nodemon ` to run backend server 
-- we instal morgan ` npm i morgan ` to get better logs for api and server
-
-2 -> Setup DataBase
-- create a new folder called ` db ` for database files
-- create a new file called ` db.js ` to handle database connection
-
-
 https://www.youtube.com/watch?v=v9MtwYmSXuw&list=PLbtI3_MArDOmebicV5NFkhBMRJH8vhBEN&index=13
+1:36
